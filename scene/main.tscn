@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://3c54uboa33ii"]
+[gd_scene load_steps=7 format=4 uid="uid://3c54uboa33ii"]
 
 [ext_resource type="Texture2D" uid="uid://b4eij4ffknuuw" path="res://sprite/tiles-1.png" id="1_itxqv"]
 [ext_resource type="PackedScene" uid="uid://b0iljnup30cgt" path="res://scene/player.tscn" id="2_v0l8b"]
 [ext_resource type="FontFile" uid="uid://g7it2q8fp8ih" path="res://fonts/PublicPixel.ttf" id="3_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://c8x8j730fr54f" path="res://scene/enemy_placeholder.tscn" id="4_brvut"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v0l8b"]
 texture = ExtResource("1_itxqv")
@@ -33,3 +34,6 @@ offset_bottom = 579.0
 theme_override_fonts/font = ExtResource("3_wp4xf")
 theme_override_font_sizes/font_size = 8
 text = "aaaaaaaaaaaaaaaaaaaaaaaa"
+
+[node name="EnemyPlaceholder" parent="." instance=ExtResource("4_brvut")]
+position = Vector2(227, 632)
