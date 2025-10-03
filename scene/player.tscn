@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://r4f2lpbco6vc" path="res://script/states/player/PlayerIdle.gd" id="6_oh5ij"]
 [ext_resource type="Script" uid="uid://dbwftt4177nje" path="res://script/states/player/PlayerWalk.gd" id="7_hp4bs"]
 [ext_resource type="Script" uid="uid://ctyytvl1qd83e" path="res://script/states/player/PlayerJump.gd" id="8_g2vtq"]
-[ext_resource type="Script" uid="uid://ddxrwugjppvyb" path="res://scene/PlayerDash.gd" id="9_2fvbb"]
+[ext_resource type="Script" uid="uid://ddxrwugjppvyb" path="res://script/states/player/PlayerDash.gd" id="9_2fvbb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4jxa"]
 atlas = ExtResource("2_ct4mp")
