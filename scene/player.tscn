@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b0iljnup30cgt"]
+[gd_scene load_steps=22 format=3 uid="uid://b0iljnup30cgt"]
 
 [ext_resource type="Script" uid="uid://qgr3x4abaxok" path="res://script/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://dycls1jjjae5" path="res://sprite/player_1.png" id="2_ct4mp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://r4f2lpbco6vc" path="res://script/states/player/PlayerIdle.gd" id="6_oh5ij"]
 [ext_resource type="Script" uid="uid://dbwftt4177nje" path="res://script/states/player/PlayerWalk.gd" id="7_hp4bs"]
 [ext_resource type="Script" uid="uid://ctyytvl1qd83e" path="res://script/states/player/PlayerJump.gd" id="8_g2vtq"]
+[ext_resource type="Script" uid="uid://ddxrwugjppvyb" path="res://scene/PlayerDash.gd" id="9_2fvbb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4jxa"]
 atlas = ExtResource("2_ct4mp")
@@ -118,6 +119,7 @@ state_machine = NodePath("StateMachine")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ct4mp")
 animation = &"walk"
+frame_progress = 0.54008645
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 1.5)
@@ -169,3 +171,15 @@ player = NodePath("../..")
 [node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("8_g2vtq")
 player = NodePath("../..")
+
+[node name="Dash" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("9_2fvbb")
+player = NodePath("../..")
+
+[node name="DashTimer" type="Timer" parent="StateMachine/Dash"]
+wait_time = 0.1
+
+[node name="DashCooldown" type="Timer" parent="StateMachine/Dash"]
+
+[connection signal="timeout" from="StateMachine/Dash/DashTimer" to="StateMachine/Dash" method="DashTimerOut"]
+[connection signal="timeout" from="StateMachine/Dash/DashCooldown" to="StateMachine/Walk" method="DashCooldownOut"]
