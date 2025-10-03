@@ -36,10 +36,10 @@ animation = &"is that"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_mk0bs")
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+[node name="Hitbox" type="Area2D" parent="CharacterBody2D"]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+[node name="Hitbox" type="CollisionShape2D" parent="CharacterBody2D/Hitbox"]
 shape = SubResource("RectangleShape2D_jlsh7")
 
-[connection signal="area_entered" from="CharacterBody2D/Area2D" to="." method="on_hit"]
+[connection signal="area_entered" from="CharacterBody2D/Hitbox" to="." method="on_hit"]
