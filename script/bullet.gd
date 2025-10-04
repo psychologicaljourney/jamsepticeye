@@ -1,5 +1,4 @@
 extends Node2D
-
 const speed = 300
 func _ready():
 	add_to_group("projectile")
