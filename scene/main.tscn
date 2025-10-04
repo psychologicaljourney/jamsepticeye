@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b0iljnup30cgt" path="res://scene/player.tscn" id="2_v0l8b"]
 [ext_resource type="Texture2D" uid="uid://iwsskxpc7j20" path="res://sprite/sign_2.png" id="3_of57s"]
 [ext_resource type="FontFile" uid="uid://g7it2q8fp8ih" path="res://fonts/PublicPixel.ttf" id="3_wp4xf"]
-[ext_resource type="PackedScene" path="res://scene/enemy_placeholder.tscn" id="4_brvut"]
+[ext_resource type="PackedScene" uid="uid://c8x8j730fr54f" path="res://scene/enemy_placeholder.tscn" id="4_brvut"]
 [ext_resource type="Texture2D" uid="uid://kifqp2kf4fqp" path="res://sprite/falling-flowers.png" id="5_0ha60"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ha60"]
@@ -92,7 +92,7 @@ tile_map_data = PackedByteArray("AAAAACYAAgAAAAAAAAAAACcAAgAAAAAAAAABACYAAgAAAAA
 tile_set = SubResource("TileSet_wp4xf")
 
 [node name="Player" parent="." instance=ExtResource("2_v0l8b")]
-position = Vector2(154, 626)
+position = Vector2(149, 667)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 66.0
@@ -104,7 +104,7 @@ theme_override_font_sizes/font_size = 8
 text = "aaaaaaaaaaaaaaaaaaaaaaaa"
 
 [node name="EnemyPlaceholder" parent="." instance=ExtResource("4_brvut")]
-position = Vector2(227, 632)
+position = Vector2(222, 667)
 
 [node name="BG" type="Sprite2D" parent="."]
 z_index = -100
