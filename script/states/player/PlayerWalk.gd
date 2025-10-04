@@ -8,7 +8,6 @@ func enter():
 	player.sprite.play("walk")
 
 func physics_update(_delta: float):
-	
 	var direction := Input.get_axis("left", "right")
 	if direction:
 		player.velocity.x = direction * player.speed
