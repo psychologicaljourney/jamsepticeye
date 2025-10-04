@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8x8j730fr54f"]
+[gd_scene load_steps=9 format=3 uid="uid://c8x8j730fr54f"]
 
 [ext_resource type="Script" uid="uid://y3nowlbyj2mo" path="res://script/enemy_placeholder.gd" id="1_jlsh7"]
 [ext_resource type="Texture2D" uid="uid://3h8abfxnklgv" path="res://sprite/prof1.png" id="2_avg8t"]
+[ext_resource type="Script" uid="uid://drbwsgc5b6e0n" path="res://scene/enemy.gd" id="2_rre6k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rre6k"]
 atlas = ExtResource("2_avg8t")
@@ -24,10 +25,15 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlsh7"]
 size = Vector2(16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avg8t"]
+size = Vector2(530.125, 379.875)
+
 [node name="EnemyPlaceholder" type="Node2D"]
 script = ExtResource("1_jlsh7")
+detected = null
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("2_rre6k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_1u3vq")
@@ -42,4 +48,11 @@ collision_mask = 2
 [node name="Hitbox" type="CollisionShape2D" parent="CharacterBody2D/Hitbox"]
 shape = SubResource("RectangleShape2D_jlsh7")
 
+[node name="detection area" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/detection area"]
+shape = SubResource("RectangleShape2D_avg8t")
+
 [connection signal="area_entered" from="CharacterBody2D/Hitbox" to="." method="on_hit"]
+[connection signal="body_entered" from="CharacterBody2D/detection area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D/detection area" to="CharacterBody2D" method="_on_detection_area_body_entered"]

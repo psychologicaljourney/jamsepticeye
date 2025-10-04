@@ -101,7 +101,7 @@ tile_map_data = PackedByteArray("AAAAACYAAgAAAAAAAAAAACcAAgAAAAAAAAABACYAAgAAAAA
 tile_set = SubResource("TileSet_wp4xf")
 
 [node name="Player" parent="." instance=ExtResource("2_v0l8b")]
-position = Vector2(453, 666)
+position = Vector2(501.1, 666)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 66.0
