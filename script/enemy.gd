@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var detected = false
 var player: Player
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta):
 	if detected:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * 100

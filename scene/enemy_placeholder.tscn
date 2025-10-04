@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://y3nowlbyj2mo" path="res://script/enemy_placeholder.gd" id="1_jlsh7"]
 [ext_resource type="Texture2D" uid="uid://3h8abfxnklgv" path="res://sprite/prof1.png" id="2_avg8t"]
-[ext_resource type="Script" uid="uid://drbwsgc5b6e0n" path="res://scene/enemy.gd" id="2_rre6k"]
+[ext_resource type="Script" uid="uid://c8x6mo6qawxtp" path="res://script/enemy.gd" id="2_rre6k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rre6k"]
 atlas = ExtResource("2_avg8t")
@@ -30,7 +30,6 @@ size = Vector2(530.125, 379.875)
 
 [node name="EnemyPlaceholder" type="Node2D"]
 script = ExtResource("1_jlsh7")
-detected = null
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("2_rre6k")
