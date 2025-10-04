@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b0iljnup30cgt"]
+[gd_scene load_steps=27 format=3 uid="uid://b0iljnup30cgt"]
 
 [ext_resource type="Script" uid="uid://qgr3x4abaxok" path="res://script/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://dycls1jjjae5" path="res://sprite/player_1.png" id="2_ct4mp"]
@@ -9,7 +9,10 @@
 [ext_resource type="Script" uid="uid://dbwftt4177nje" path="res://script/states/player/PlayerWalk.gd" id="7_hp4bs"]
 [ext_resource type="Script" uid="uid://ctyytvl1qd83e" path="res://script/states/player/PlayerJump.gd" id="8_g2vtq"]
 [ext_resource type="Script" uid="uid://ddxrwugjppvyb" path="res://script/states/player/PlayerDash.gd" id="9_2fvbb"]
-[ext_resource type="PackedScene" uid="uid://d0mtxm1eydlc5" path="res://scene/shotgun.tscn" id="10_ml7e8"]
+[ext_resource type="PackedScene" path="res://scene/shotgun.tscn" id="10_ml7e8"]
+[ext_resource type="Shader" uid="uid://b60umjprcoeo" path="res://script/cursor.gdshader" id="11_dk1vr"]
+[ext_resource type="Texture2D" uid="uid://bn1tdfxqli856" path="res://sprite/cursor.png" id="11_ihjo1"]
+[ext_resource type="Script" uid="uid://bghv661yi2btv" path="res://script/cursor.gd" id="13_34jf3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4jxa"]
 atlas = ExtResource("2_ct4mp")
@@ -112,7 +115,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4jxa"]
 size = Vector2(9, 13)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "state_machine")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dk1vr"]
+shader = ExtResource("11_dk1vr")
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "state_machine") groups=["Player"]]
 script = ExtResource("1_hjaqi")
 sprite = NodePath("Sprite")
 state_machine = NodePath("StateMachine")
@@ -127,6 +133,7 @@ position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_s4jxa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -64)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
@@ -158,6 +165,17 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_s4jxa")
 theme_override_font_sizes/font_size = 15
 text = "01"
+
+[node name="Cursor" type="TextureRect" parent="CanvasLayer"]
+z_index = 100
+material = SubResource("ShaderMaterial_dk1vr")
+offset_left = 59.0
+offset_top = -6.0
+offset_right = 99.0
+offset_bottom = 34.0
+texture = ExtResource("11_ihjo1")
+expand_mode = 3
+script = ExtResource("13_34jf3")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
 script = ExtResource("5_s4jxa")

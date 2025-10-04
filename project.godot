@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="jamsepticeye"
-run/main_scene="uid://3c54uboa33ii"
+run/main_scene="uid://dllgbit8ocygc"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [autoload]
@@ -22,6 +22,10 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
+[global_group]
+
+Player=""
 
 [input]
 

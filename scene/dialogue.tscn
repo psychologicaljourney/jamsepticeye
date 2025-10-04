@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dy8hu8mwduyi2"]
 
-[ext_resource type="Script" path="res://script/dialogue.gd" id="1_dpdwr"]
+[ext_resource type="Script" uid="uid://b0r37ukohdksa" path="res://script/dialogue.gd" id="1_dpdwr"]
 [ext_resource type="Texture2D" uid="uid://hxj0fhdl7cjk" path="res://sprite/text_ninepatch.png" id="1_gxfc3"]
 [ext_resource type="FontFile" uid="uid://g7it2q8fp8ih" path="res://fonts/PublicPixel.ttf" id="2_dpdwr"]
 

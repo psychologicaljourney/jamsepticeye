@@ -11,7 +11,6 @@ var dialogue_shown = false
 
 @export var sprite: AnimatedSprite2D
 @export var state_machine: StateMachine
-@onready var area_2d: Area2D = $"../BGTiles/Sign1BG/Sign1/Area2D"
 const DIALOGUE = preload("uid://dy8hu8mwduyi2")
 @onready var main: Node2D = $".."
 
