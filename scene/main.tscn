@@ -1,12 +1,12 @@
-[gd_scene load_steps=16 format=4 uid="uid://3c54uboa33ii"]
+[gd_scene load_steps=17 format=4 uid="uid://3c54uboa33ii"]
 
 [ext_resource type="Texture2D" uid="uid://bkkbdimn5wf3o" path="res://sprite/tiles.png" id="1_brvut"]
 [ext_resource type="Texture2D" uid="uid://deqkeucamnl1b" path="res://sprite/sign_1.png" id="2_p1hux"]
 [ext_resource type="PackedScene" uid="uid://b0iljnup30cgt" path="res://scene/player.tscn" id="2_v0l8b"]
 [ext_resource type="Texture2D" uid="uid://iwsskxpc7j20" path="res://sprite/sign_2.png" id="3_of57s"]
-[ext_resource type="FontFile" uid="uid://g7it2q8fp8ih" path="res://fonts/PublicPixel.ttf" id="3_wp4xf"]
 [ext_resource type="Texture2D" uid="uid://kifqp2kf4fqp" path="res://sprite/falling-flowers.png" id="5_0ha60"]
-[ext_resource type="PackedScene" uid="uid://ct5y241m22ln2" path="res://scene/dialogue/balloon.tscn" id="7_p1hux"]
+[ext_resource type="PackedScene" uid="uid://dchgsrm443eec" path="res://scene/dialogue_trigger.tscn" id="6_4j5ol"]
+[ext_resource type="Resource" uid="uid://bgxm1nvgrlyw4" path="res://data/dialogue/test1.dialogue" id="7_p1hux"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p1hux"]
 texture = ExtResource("1_brvut")
@@ -69,6 +69,9 @@ gravity = Vector3(0, 10, 0)
 color_initial_ramp = SubResource("GradientTexture1D_b5f6u")
 anim_offset_max = 1.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1hux"]
+size = Vector2(36, 39)
+
 [node name="Main" type="Node2D"]
 
 [node name="BGTiles" type="TileMapLayer" parent="."]
@@ -95,15 +98,6 @@ tile_set = SubResource("TileSet_wp4xf")
 [node name="Player" parent="." instance=ExtResource("2_v0l8b")]
 position = Vector2(501.1, 666)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 66.0
-offset_top = 556.0
-offset_right = 258.0
-offset_bottom = 579.0
-theme_override_fonts/font = ExtResource("3_wp4xf")
-theme_override_font_sizes/font_size = 8
-text = "aaaaaaaaaaaaaaaaaaaaaaaa"
-
 [node name="BG" type="Sprite2D" parent="."]
 z_index = -100
 position = Vector2(168, 672)
@@ -120,5 +114,11 @@ lifetime = 20.0
 visibility_rect = Rect2(-500, -500, 500, 500)
 process_material = SubResource("ParticleProcessMaterial_p1hux")
 
-[node name="DialogueNode" parent="." instance=ExtResource("7_p1hux")]
-position = Vector2(430, 554)
+[node name="DialogueTrigger" parent="." instance=ExtResource("6_4j5ol")]
+position = Vector2(426, 673)
+dialogue = ExtResource("7_p1hux")
+title = "start"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTrigger"]
+position = Vector2(-7, -10.5)
+shape = SubResource("RectangleShape2D_p1hux")

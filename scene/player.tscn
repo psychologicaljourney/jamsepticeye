@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b0iljnup30cgt"]
+[gd_scene load_steps=28 format=3 uid="uid://b0iljnup30cgt"]
 
 [ext_resource type="Script" uid="uid://qgr3x4abaxok" path="res://script/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://dycls1jjjae5" path="res://sprite/player_1.png" id="2_ct4mp"]
@@ -8,8 +8,9 @@
 [ext_resource type="Script" uid="uid://r4f2lpbco6vc" path="res://script/states/player/PlayerIdle.gd" id="6_oh5ij"]
 [ext_resource type="Script" uid="uid://dbwftt4177nje" path="res://script/states/player/PlayerWalk.gd" id="7_hp4bs"]
 [ext_resource type="Script" uid="uid://ctyytvl1qd83e" path="res://script/states/player/PlayerJump.gd" id="8_g2vtq"]
+[ext_resource type="Script" uid="uid://da4c880bbwfey" path="res://script/interaction_area.gd" id="8_u7b46"]
 [ext_resource type="Script" uid="uid://ddxrwugjppvyb" path="res://script/states/player/PlayerDash.gd" id="9_2fvbb"]
-[ext_resource type="PackedScene" path="res://scene/shotgun.tscn" id="10_ml7e8"]
+[ext_resource type="PackedScene" uid="uid://d0mtxm1eydlc5" path="res://scene/shotgun.tscn" id="10_ml7e8"]
 [ext_resource type="Shader" uid="uid://b60umjprcoeo" path="res://script/cursor.gdshader" id="11_dk1vr"]
 [ext_resource type="Texture2D" uid="uid://bn1tdfxqli856" path="res://sprite/cursor.png" id="11_ihjo1"]
 [ext_resource type="Script" uid="uid://bghv661yi2btv" path="res://script/cursor.gd" id="13_34jf3"]
@@ -111,6 +112,9 @@ size = Vector2(9, 13)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dk1vr"]
 shader = ExtResource("11_dk1vr")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_34jf3"]
+radius = 12.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "state_machine") groups=["Player"]]
 script = ExtResource("1_hjaqi")
 sprite = NodePath("Sprite")
@@ -168,6 +172,13 @@ offset_bottom = 34.0
 texture = ExtResource("11_ihjo1")
 expand_mode = 3
 script = ExtResource("13_34jf3")
+
+[node name="InteractionArea" type="Area2D" parent="." groups=["Player_I"]]
+script = ExtResource("8_u7b46")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_34jf3")
+debug_color = Color(3.465414e-06, 0.6427619, 0.31751925, 0.41960785)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
 script = ExtResource("5_s4jxa")

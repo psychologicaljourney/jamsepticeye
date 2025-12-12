@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dchgsrm443eec"]
+
+[ext_resource type="Texture2D" uid="uid://citg7admrvtp7" path="res://sprite/key_base.png" id="1_1bofd"]
+[ext_resource type="Script" uid="uid://gfu6jxdqqxfy" path="res://script/dialogue_trigger.gd" id="1_lf035"]
+[ext_resource type="FontFile" uid="uid://g7it2q8fp8ih" path="res://fonts/PublicPixel.ttf" id="2_lf035"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lf035"]
+font_size = 8
+
+[node name="DialogueTrigger" type="Area2D" groups=["Interactable"]]
+z_index = 50
+collision_layer = 9
+script = ExtResource("1_lf035")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -20.0
+offset_top = -53.0
+offset_right = 3.0
+offset_bottom = -30.0
+texture = ExtResource("1_1bofd")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -3.0
+offset_right = 32.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("2_lf035")
+theme_override_font_sizes/font_size = 16
+text = "W"
+label_settings = SubResource("LabelSettings_lf035")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

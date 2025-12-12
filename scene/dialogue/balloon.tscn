@@ -99,7 +99,7 @@ _data = {
 &"progress": SubResource("Animation_qkmqt")
 }
 
-[node name="DialogueNode" type="Node2D"]
+[node name="DialogueNode" type="Node2D" groups=["dialogue_balloon"]]
 z_index = 100
 script = ExtResource("1_36de5")
 next_action = &"d_next"
@@ -123,11 +123,12 @@ theme = SubResource("Theme_qq3yp")
 unique_name_in_owner = true
 modulate = Color(2.4361749, 2.4361749, 2.4361749, 1)
 layout_mode = 0
-offset_left = -492.0
-offset_top = -259.0
-offset_right = -136.0
-offset_bottom = -147.0
+offset_left = -490.0
+offset_top = -185.0
+offset_right = -134.0
+offset_bottom = -173.0
 mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "Character"
 fit_content = true
@@ -140,9 +141,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -552.0
-offset_top = -148.0
-offset_right = 75.5
+offset_left = -548.0
+offset_top = -268.0
+offset_right = -102.0
+offset_bottom = -192.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -192,10 +194,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -527.0
-offset_top = -5.0
-offset_right = 54.0
-offset_bottom = 65.0
+offset_left = -553.0
+offset_top = -203.0
+offset_right = -377.0
+offset_bottom = -133.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
@@ -206,6 +208,7 @@ response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/ResponsesMenu"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "Response example"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
