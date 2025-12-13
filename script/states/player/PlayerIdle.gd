@@ -7,8 +7,6 @@ extends State
 func enter():
 	player.sprite.play("idle")
 
-func physics_update(_delta: float):
-	player.velocity = Vector2.ZERO
 
 func input(_event: InputEvent):
 	if Input.get_axis("left", "right") != 0:

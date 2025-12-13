@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://3c54uboa33ii"]
+[gd_scene load_steps=23 format=4 uid="uid://3c54uboa33ii"]
 
 [ext_resource type="Texture2D" uid="uid://bkkbdimn5wf3o" path="res://sprite/tiles.png" id="1_brvut"]
 [ext_resource type="Texture2D" uid="uid://deqkeucamnl1b" path="res://sprite/sign_1.png" id="2_p1hux"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://kifqp2kf4fqp" path="res://sprite/falling-flowers.png" id="5_0ha60"]
 [ext_resource type="PackedScene" uid="uid://dchgsrm443eec" path="res://scene/dialogue_trigger.tscn" id="6_4j5ol"]
 [ext_resource type="Resource" uid="uid://bgxm1nvgrlyw4" path="res://data/dialogue/test1.dialogue" id="7_p1hux"]
+[ext_resource type="Texture2D" uid="uid://3h8abfxnklgv" path="res://sprite/prof1.png" id="8_b5f6u"]
+[ext_resource type="Script" uid="uid://cmbcr8kt5n0xb" path="res://script/look_at_player_sprite.gd" id="9_tqoya"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p1hux"]
 texture = ExtResource("1_brvut")
@@ -69,8 +71,42 @@ gravity = Vector3(0, 10, 0)
 color_initial_ramp = SubResource("GradientTexture1D_b5f6u")
 anim_offset_max = 1.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1hux"]
-size = Vector2(36, 39)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5f6u"]
+size = Vector2(117, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wscrc"]
+atlas = ExtResource("8_b5f6u")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mswub"]
+atlas = ExtResource("8_b5f6u")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hybxs"]
+atlas = ExtResource("8_b5f6u")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v2gmf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wscrc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mswub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hybxs")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 10.0
+}]
 
 [node name="Main" type="Node2D"]
 
@@ -114,11 +150,26 @@ lifetime = 20.0
 visibility_rect = Rect2(-500, -500, 500, 500)
 process_material = SubResource("ParticleProcessMaterial_p1hux")
 
-[node name="DialogueTrigger" parent="." instance=ExtResource("6_4j5ol")]
-position = Vector2(426, 673)
+[node name="DialogueTrigger" parent="." node_paths=PackedStringArray("node") instance=ExtResource("6_4j5ol")]
+position = Vector2(442, 671)
 dialogue = ExtResource("7_p1hux")
 title = "start"
+node = NodePath("Flip/AnimatedSprite2D")
+function_to_execute = "Talk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueTrigger"]
-position = Vector2(-7, -10.5)
-shape = SubResource("RectangleShape2D_p1hux")
+position = Vector2(0.5, -9.5)
+shape = SubResource("RectangleShape2D_b5f6u")
+debug_color = Color(0.3404415, 0.6216565, 7.70092e-07, 0.41960785)
+
+[node name="Flip" type="Node2D" parent="DialogueTrigger"]
+position = Vector2(-426, -673)
+script = ExtResource("9_tqoya")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DialogueTrigger/Flip"]
+z_index = 2
+z_as_relative = false
+position = Vector2(424, 673)
+sprite_frames = SubResource("SpriteFrames_v2gmf")
+animation = &"idle"
+script = ExtResource("9_tqoya")

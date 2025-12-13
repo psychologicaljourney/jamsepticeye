@@ -1,3 +1,4 @@
+class_name DialogueBalloon
 extends Node2D
 ## A basic dialogue balloon for use with Dialogue Manager.
 
@@ -209,5 +210,28 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
 
+
+
+
+
+func _on_tree_exiting() -> void: #Dialogue End
+	Global.player.state_machine.change_state("Idle")
+	#Global.player.camera.zoom -= Vector2(0.5,0.5)
+
+func _on_tree_entered() -> void: #Dialogue Start
+	Global.player.state_machine.change_state("Talk")
+	#Global.player.camera.zoom += Vector2(0.5,0.5)
+
+signal started_typing
+signal finished_typing
+
+
+
+func _on_dialogue_label_started_typing() -> void:
+	started_typing.emit()
+
+
+func _on_dialogue_label_finished_typing() -> void:
+	finished_typing.emit()
 
 #endregion

@@ -13,10 +13,10 @@ collision_layer = 9
 script = ExtResource("1_lf035")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -20.0
-offset_top = -53.0
-offset_right = 3.0
-offset_bottom = -30.0
+offset_left = -11.0
+offset_top = -63.0
+offset_right = 12.0
+offset_bottom = -40.0
 texture = ExtResource("1_1bofd")
 
 [node name="Label" type="Label" parent="TextureRect"]

@@ -10,8 +10,8 @@ func enter():
 	
 
 func physics_update(_delta: float):
-	if player.is_on_floor():
-	
+	if player.jumps > 0:
+		player.jumps -= 1
 		if Input.get_axis("left", "right") != 0:
 			player.state_machine.change_state("Walk")
 		else:
