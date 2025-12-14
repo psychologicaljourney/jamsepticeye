@@ -33,6 +33,7 @@ Player=""
 Interactable=""
 Player_I=""
 dialogue_balloon=""
+Bullet=""
 
 [gui]
 

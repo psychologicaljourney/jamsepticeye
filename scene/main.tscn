@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://3c54uboa33ii"]
+[gd_scene load_steps=24 format=4 uid="uid://3c54uboa33ii"]
 
 [ext_resource type="Texture2D" uid="uid://bkkbdimn5wf3o" path="res://sprite/tiles.png" id="1_brvut"]
 [ext_resource type="Texture2D" uid="uid://deqkeucamnl1b" path="res://sprite/sign_1.png" id="2_p1hux"]
@@ -38,14 +38,6 @@ tile_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_p1hux")
 
-[sub_resource type="Gradient" id="Gradient_of57s"]
-offsets = PackedFloat32Array(0, 0.09009009, 0.45045045, 0.6666667, 0.9369369)
-colors = PackedColorArray(0.5448918, 0.46462, 0.2812302, 1, 0.6472197, 0.5720701, 0.40182728, 1, 0.89411765, 0.8235294, 0.6666667, 1, 0.9254902, 0.83137256, 0.7372549, 1, 0.81960785, 0.78431374, 0.8235294, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_p1hux"]
-gradient = SubResource("Gradient_of57s")
-fill_from = Vector2(1, 1)
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4j5ol"]
 particles_animation = true
 particles_anim_h_frames = 4
@@ -70,6 +62,21 @@ angular_velocity_max = 19.999983
 gravity = Vector3(0, 10, 0)
 color_initial_ramp = SubResource("GradientTexture1D_b5f6u")
 anim_offset_max = 1.0
+
+[sub_resource type="Gradient" id="Gradient_of57s"]
+offsets = PackedFloat32Array(0, 0.09009009, 0.45045045, 0.6666667, 0.9369369)
+colors = PackedColorArray(0.5448918, 0.46462, 0.2812302, 1, 0.6472197, 0.5720701, 0.40182728, 1, 0.89411765, 0.8235294, 0.6666667, 1, 0.9254902, 0.83137256, 0.7372549, 1, 0.81960785, 0.78431374, 0.8235294, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p1hux"]
+gradient = SubResource("Gradient_of57s")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="Environment" id="Environment_b5f6u"]
+background_mode = 3
+glow_bloom = 0.51
+fog_light_energy = 8.88
+fog_height = 28.4
+fog_height_density = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b5f6u"]
 size = Vector2(117, 39)
@@ -134,12 +141,6 @@ tile_set = SubResource("TileSet_wp4xf")
 [node name="Player" parent="." instance=ExtResource("2_v0l8b")]
 position = Vector2(501.1, 666)
 
-[node name="BG" type="Sprite2D" parent="."]
-z_index = -100
-position = Vector2(168, 672)
-scale = Vector2(36.226566, 17.675783)
-texture = SubResource("GradientTexture2D_p1hux")
-
 [node name="FallingFlowers" type="GPUParticles2D" parent="."]
 z_index = 10
 material = SubResource("CanvasItemMaterial_4j5ol")
@@ -149,6 +150,15 @@ texture = ExtResource("5_0ha60")
 lifetime = 20.0
 visibility_rect = Rect2(-500, -500, 500, 500)
 process_material = SubResource("ParticleProcessMaterial_p1hux")
+
+[node name="BG" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(168, 672)
+scale = Vector2(36.226566, 17.675783)
+texture = SubResource("GradientTexture2D_p1hux")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="BG"]
+environment = SubResource("Environment_b5f6u")
 
 [node name="DialogueTrigger" parent="." node_paths=PackedStringArray("node") instance=ExtResource("6_4j5ol")]
 position = Vector2(442, 671)
@@ -169,7 +179,7 @@ script = ExtResource("9_tqoya")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DialogueTrigger/Flip"]
 z_index = 2
 z_as_relative = false
-position = Vector2(424, 673)
+position = Vector2(426, 673)
 sprite_frames = SubResource("SpriteFrames_v2gmf")
 animation = &"idle"
 script = ExtResource("9_tqoya")

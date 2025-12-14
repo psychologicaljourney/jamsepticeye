@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b0iljnup30cgt"]
+[gd_scene load_steps=30 format=3 uid="uid://b0iljnup30cgt"]
 
 [ext_resource type="Script" uid="uid://qgr3x4abaxok" path="res://script/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://dycls1jjjae5" path="res://sprite/player_1.png" id="2_ct4mp"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bn1tdfxqli856" path="res://sprite/cursor.png" id="11_ihjo1"]
 [ext_resource type="Script" path="res://script/cursor.gd" id="13_34jf3"]
 [ext_resource type="Script" uid="uid://cfsbs2ya1hj41" path="res://script/states/player/PlayerTalk.gd" id="14_j4wxg"]
+[ext_resource type="Script" uid="uid://tcnm85tuq8qn" path="res://script/hand.gd" id="15_bup7g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4jxa"]
 atlas = ExtResource("2_ct4mp")
@@ -211,8 +212,12 @@ wait_time = 0.1
 script = ExtResource("14_j4wxg")
 player = NodePath("../..")
 
-[node name="Shotgun" parent="." instance=ExtResource("10_ml7e8")]
+[node name="Hand" type="Node2D" parent="."]
 position = Vector2(3, 3)
+script = ExtResource("15_bup7g")
+
+[node name="Shotgun" parent="Hand" instance=ExtResource("10_ml7e8")]
+arc = 6.283185307179586
 
 [connection signal="timeout" from="StateMachine/Dash/DashTimer" to="StateMachine/Dash" method="DashTimerOut"]
 [connection signal="timeout" from="StateMachine/Dash/DashCooldown" to="StateMachine/Walk" method="DashCooldownOut"]
