@@ -4,7 +4,7 @@ Oliver: I enjoy reading books.
 Oliver: Have you ever thought about writing one?
 - Yes.
 	Oliver: Oh really?
-	do Global.write_dialogue()
+	# do Global.write_dialogue() - See comment in Global.
 	=> END
 - No.
 	Oliver: aw. 

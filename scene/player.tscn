@@ -11,9 +11,9 @@
 [ext_resource type="Script" uid="uid://da4c880bbwfey" path="res://script/interaction_area.gd" id="8_u7b46"]
 [ext_resource type="Script" uid="uid://ddxrwugjppvyb" path="res://script/states/player/PlayerDash.gd" id="9_2fvbb"]
 [ext_resource type="PackedScene" uid="uid://d0mtxm1eydlc5" path="res://scene/shotgun.tscn" id="10_ml7e8"]
-[ext_resource type="Shader" uid="uid://b60umjprcoeo" path="res://script/cursor.gdshader" id="11_dk1vr"]
+[ext_resource type="Shader" path="res://script/cursor.gdshader" id="11_dk1vr"]
 [ext_resource type="Texture2D" uid="uid://bn1tdfxqli856" path="res://sprite/cursor.png" id="11_ihjo1"]
-[ext_resource type="Script" uid="uid://bghv661yi2btv" path="res://script/cursor.gd" id="13_34jf3"]
+[ext_resource type="Script" path="res://script/cursor.gd" id="13_34jf3"]
 [ext_resource type="Script" uid="uid://cfsbs2ya1hj41" path="res://script/states/player/PlayerTalk.gd" id="14_j4wxg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4jxa"]
