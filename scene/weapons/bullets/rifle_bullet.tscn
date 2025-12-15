@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhur51jopm582"]
+
+[ext_resource type="Script" uid="uid://dvfk6dr5lkj55" path="res://script/weapons/bullet.gd" id="1_koel4"]
+[ext_resource type="Texture2D" uid="uid://dndwwr2p4g000" path="res://sprite/a singular white pixel that may or may not have a use later on.png" id="2_bl73r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xw300"]
+size = Vector2(1, 1)
+
+[node name="Bullet" type="Node2D" groups=["Bullet"]]
+script = ExtResource("1_koel4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+texture = ExtResource("2_bl73r")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_xw300")
+
+[connection signal="body_entered" from="Hitbox" to="." method="hit_enemy"]

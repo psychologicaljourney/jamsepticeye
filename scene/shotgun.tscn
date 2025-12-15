@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d0mtxm1eydlc5"]
 
 [ext_resource type="Texture2D" uid="uid://kfhi5vlg8h1n" path="res://sprite/shotgun.png" id="1_egs87"]
-[ext_resource type="Script" uid="uid://t8ghd221nwga" path="res://script/weapons/gun.gd" id="1_yha0r"]
+[ext_resource type="Script" uid="uid://t8ghd221nwga" path="res://script/weapons/bullet_weapon.gd" id="1_yha0r"]
 [ext_resource type="PackedScene" uid="uid://ddbswuoahrdsa" path="res://scene/bullet.tscn" id="2_yha0r"]
 
 [node name="Shotgun" type="Node2D" node_paths=PackedStringArray("firepoint")]
@@ -11,6 +11,10 @@ firerate = 0.78
 bullet_amount = 4
 firepoint = NodePath("Marker2D")
 arc_deg = 30.0
+alt_fire_enabled = null
+alt_firerate = null
+alt_bullet_amount = null
+alt_arc_deg = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, -4)

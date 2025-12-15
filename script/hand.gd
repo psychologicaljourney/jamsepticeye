@@ -22,3 +22,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
 		if get_child_count() > 0:
 			get_child(0).shoot()
+	if Input.is_action_pressed("shoot_alt"):
+		if get_child_count() > 0:
+			get_child(0).shoot_alt()
