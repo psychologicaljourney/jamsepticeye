@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://mi6ogns4hwr4"]
+
+[ext_resource type="Script" uid="uid://bprx3fnob2o0q" path="res://script/living.gd" id="1_pne4d"]
+[ext_resource type="Texture2D" uid="uid://oe4krted0vfy" path="res://sprite/creatures/starewaffle.png" id="2_6au1v"]
+[ext_resource type="Script" uid="uid://1uw1lojexpdh" path="res://script/health_bar.gd" id="3_6au1v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6au1v"]
+size = Vector2(34, 31)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6au1v"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jua5a"]
+bg_color = Color(0.60038817, 0.86397636, 0.60038817, 1)
+
+[node name="Dummy" type="CharacterBody2D" groups=["Living"]]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_pne4d")
+metadata/_custom_type_script = "uid://bprx3fnob2o0q"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.572944e-07, -0.49999905)
+scale = Vector2(0.27868852, 0.2421875)
+texture = ExtResource("2_6au1v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_6au1v")
+
+[node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("living")]
+offset_left = -38.0
+offset_top = -30.0
+offset_right = 38.0
+offset_bottom = -21.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6au1v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jua5a")
+value = 5.0
+show_percentage = false
+script = ExtResource("3_6au1v")
+living = NodePath("..")

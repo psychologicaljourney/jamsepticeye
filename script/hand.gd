@@ -20,8 +20,10 @@ func _process(delta: float) -> void:
 		scale.y = 1
 
 	if Input.is_action_pressed("shoot"):
-		if get_child_count() > 0:
-			get_child(0).shoot()
+		for i in get_children():
+			if i.visible:
+				i.shoot()
 	if Input.is_action_pressed("shoot_alt"):
-		if get_child_count() > 0:
-			get_child(0).shoot_alt()
+		for i in get_children():
+			if i.visible:
+				i.shoot_alt()

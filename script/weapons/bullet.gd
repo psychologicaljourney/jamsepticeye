@@ -15,3 +15,9 @@ func _ready():
 	
 func _process(delta: float):
 	position +=  transform.x * speed * delta
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Living"):
+		body.damage(10)
+		queue_free()

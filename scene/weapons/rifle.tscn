@@ -1,14 +1,75 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjerpua7rirbs"]
+[gd_scene load_steps=9 format=3 uid="uid://cjerpua7rirbs"]
 
 [ext_resource type="Texture2D" uid="uid://cc6lgk2or6nm4" path="res://sprite/weapons/rifle.png" id="1_0kmc0"]
 [ext_resource type="Script" uid="uid://6hg862x0gv4" path="res://script/weapons/rifle.gd" id="1_7admx"]
+[ext_resource type="PackedScene" uid="uid://dhur51jopm582" path="res://scene/weapons/bullets/rifle_target.tscn" id="2_e7k56"]
+[ext_resource type="Texture2D" uid="uid://ct63ssm8ps44x" path="res://sprite/weapons/rifle_target.png" id="4_uuge6"]
 
-[node name="Rifle" type="Node2D"]
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7admx"]
+b = Vector2(2000, 0)
+
+[sub_resource type="Animation" id="Animation_ktixf"]
+resource_name = "shoot_alt"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 1.8666667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1e-05, 1.0, 1.0, 1e-05]
+}
+
+[sub_resource type="Animation" id="Animation_a6q4d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1e-05]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2xox"]
+_data = {
+&"RESET": SubResource("Animation_a6q4d"),
+&"shoot_alt": SubResource("Animation_ktixf")
+}
+
+[node name="Rifle" type="Node2D" node_paths=PackedStringArray("fire_area")]
 script = ExtResource("1_7admx")
+damage = 20.0
+fire_area = NodePath("FireArea")
+target_scene = ExtResource("2_e7k56")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4, -3)
 texture = ExtResource("1_0kmc0")
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(17, -1.5)
+[node name="FireArea" type="Area2D" parent="."]
+position = Vector2(16, -2)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireArea"]
+shape = SubResource("SegmentShape2D_7admx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D2")
+libraries = {
+&"": SubResource("AnimationLibrary_a2xox")
+}
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(26, -2)
+scale = Vector2(1, 1e-05)
+texture = ExtResource("4_uuge6")

@@ -17,8 +17,8 @@ extends Weapon
 @export_range(0, 360, 1) var alt_arc_deg: float = 0
 @onready var alt_arc = deg_to_rad(arc_deg)
 
-var can_shoot := true
-var can_shoot_alt := true
+
+
 
 func shoot():
 	if can_shoot:

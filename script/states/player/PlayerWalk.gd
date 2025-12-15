@@ -10,7 +10,7 @@ func enter():
 func physics_update(_delta: float):
 	var direction := Input.get_axis("left", "right")
 	if direction:
-		player.velocity.x = direction * player.speed
+		player.velocity.x = direction * player.speed * player.speed_mult
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0, player.speed)
 		player.state_machine.change_state("Idle")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://3c54uboa33ii"]
+[gd_scene load_steps=25 format=4 uid="uid://3c54uboa33ii"]
 
 [ext_resource type="Texture2D" uid="uid://bkkbdimn5wf3o" path="res://sprite/tiles.png" id="1_brvut"]
 [ext_resource type="Texture2D" uid="uid://deqkeucamnl1b" path="res://sprite/sign_1.png" id="2_p1hux"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bgxm1nvgrlyw4" path="res://data/dialogue/test1.dialogue" id="7_p1hux"]
 [ext_resource type="Texture2D" uid="uid://3h8abfxnklgv" path="res://sprite/prof1.png" id="8_b5f6u"]
 [ext_resource type="Script" uid="uid://cmbcr8kt5n0xb" path="res://script/look_at_player_sprite.gd" id="9_tqoya"]
+[ext_resource type="PackedScene" uid="uid://mi6ogns4hwr4" path="res://scene/creatures/Dummy.tscn" id="10_tqoya"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p1hux"]
 texture = ExtResource("1_brvut")
@@ -35,7 +36,8 @@ texture_region_size = Vector2i(18, 18)
 
 [sub_resource type="TileSet" id="TileSet_wp4xf"]
 tile_size = Vector2i(18, 18)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 17
+physics_layer_0/collision_mask = 17
 sources/2 = SubResource("TileSetAtlasSource_p1hux")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4j5ol"]
@@ -183,3 +185,21 @@ position = Vector2(426, 673)
 sprite_frames = SubResource("SpriteFrames_v2gmf")
 animation = &"idle"
 script = ExtResource("9_tqoya")
+
+[node name="Dummy" parent="." instance=ExtResource("10_tqoya")]
+position = Vector2(7, 663)
+
+[node name="Dummy2" parent="." instance=ExtResource("10_tqoya")]
+position = Vector2(-74, 663)
+
+[node name="Dummy3" parent="." instance=ExtResource("10_tqoya")]
+position = Vector2(170, 660)
+
+[node name="Dummy5" parent="." instance=ExtResource("10_tqoya")]
+position = Vector2(248, 660)
+
+[node name="Dummy6" parent="." instance=ExtResource("10_tqoya")]
+position = Vector2(329, 659)
+
+[node name="Dummy4" parent="." instance=ExtResource("10_tqoya")]
+position = Vector2(89, 660)

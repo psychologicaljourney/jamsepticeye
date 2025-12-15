@@ -34,6 +34,7 @@ Interactable=""
 Player_I=""
 dialogue_balloon=""
 Bullet=""
+Living=""
 
 [gui]
 
@@ -129,6 +130,7 @@ locale/translations_pot_files=PackedStringArray("res://data/dialogue/test1.dialo
 [layer_names]
 
 2d_physics/layer_4="Triggers"
+2d_physics/layer_5="Enemies"
 
 [rendering]
 

@@ -11,10 +11,6 @@ firerate = 0.78
 bullet_amount = 4
 firepoint = NodePath("Marker2D")
 arc_deg = 30.0
-alt_fire_enabled = null
-alt_firerate = null
-alt_bullet_amount = null
-alt_arc_deg = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3, -4)

@@ -4,6 +4,7 @@ const BulletDamage = 25
 const BulletDamageUp = 50
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
+@onready var damage_over_time = preload("res://scene/weapons/bullets/damage_over_time.tscn")
 
 # func write_dialogue():
 	#OS.shell_open("notepad.exe")

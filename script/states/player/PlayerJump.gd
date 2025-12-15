@@ -6,7 +6,7 @@ extends State
 
 func enter():
 	player.sprite.play("jump")
-	player.velocity.y = player.jump_vel
+	player.velocity.y = player.jump_vel * player.speed_mult
 	
 
 func physics_update(_delta: float):

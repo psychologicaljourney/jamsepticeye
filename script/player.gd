@@ -5,10 +5,10 @@ extends CharacterBody2D
 var speed = 150
 var jump_vel = -200
 
+var speed_mult := 1.0
+
 var max_jumps := 2
 @onready var jumps := max_jumps
-
-
 
 @export var sprite: AnimatedSprite2D
 @export var state_machine: StateMachine
