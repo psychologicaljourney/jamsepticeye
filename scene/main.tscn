@@ -187,19 +187,7 @@ animation = &"idle"
 script = ExtResource("9_tqoya")
 
 [node name="Dummy" parent="." instance=ExtResource("10_tqoya")]
-position = Vector2(7, 663)
+position = Vector2(273, 613)
 
 [node name="Dummy2" parent="." instance=ExtResource("10_tqoya")]
-position = Vector2(-74, 663)
-
-[node name="Dummy3" parent="." instance=ExtResource("10_tqoya")]
-position = Vector2(170, 660)
-
-[node name="Dummy5" parent="." instance=ExtResource("10_tqoya")]
-position = Vector2(248, 660)
-
-[node name="Dummy6" parent="." instance=ExtResource("10_tqoya")]
-position = Vector2(329, 659)
-
-[node name="Dummy4" parent="." instance=ExtResource("10_tqoya")]
-position = Vector2(89, 660)
+position = Vector2(187, 612)
