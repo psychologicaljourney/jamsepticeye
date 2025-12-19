@@ -1,0 +1,132 @@
+[gd_scene load_steps=17 format=3 uid="uid://cdq30itfxhiun"]
+
+[ext_resource type="Script" uid="uid://cseao7ndivum6" path="res://script/creatures/attacking_creature.gd" id="1_4gdsb"]
+[ext_resource type="Texture2D" uid="uid://dc6ylev2uvevu" path="res://sprite/creatures/inf_blob_sheet.png" id="2_x22ra"]
+[ext_resource type="StyleBox" uid="uid://w5tct5b8jefy" path="res://scene/styles/hp_bg.tres" id="3_ke4j5"]
+[ext_resource type="StyleBox" uid="uid://cggn63jg381vg" path="res://scene/styles/hp_fill.tres" id="4_g0mlu"]
+[ext_resource type="Script" uid="uid://1uw1lojexpdh" path="res://script/health_bar.gd" id="5_i3mhf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbh4k"]
+atlas = ExtResource("2_x22ra")
+region = Rect2(0, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke4j5"]
+atlas = ExtResource("2_x22ra")
+region = Rect2(18, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0mlu"]
+atlas = ExtResource("2_x22ra")
+region = Rect2(36, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3mhf"]
+atlas = ExtResource("2_x22ra")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oc6n"]
+atlas = ExtResource("2_x22ra")
+region = Rect2(0, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6agn"]
+atlas = ExtResource("2_x22ra")
+region = Rect2(18, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0m2p6"]
+atlas = ExtResource("2_x22ra")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5w61v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbh4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke4j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0mlu")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3mhf")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6oc6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6agn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0m2p6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lsqv"]
+size = Vector2(12, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3p035"]
+size = Vector2(16, 9)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ke4j5"]
+radius = 19.026299
+
+[node name="Blob" type="CharacterBody2D" node_paths=PackedStringArray("attacking_area", "range_area", "sprite")]
+collision_layer = 48
+collision_mask = 48
+script = ExtResource("1_4gdsb")
+attacking_area = NodePath("AttackArea")
+range_area = NodePath("AttackRange")
+atk_time = 0.25
+windup = 0.5
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5w61v")
+animation = &"attack"
+frame = 2
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -0.5)
+shape = SubResource("RectangleShape2D_4lsqv")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(6, -0.5)
+shape = SubResource("RectangleShape2D_3p035")
+debug_color = Color(0.99625236, 0.05831963, 9.62615e-07, 0.41960785)
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_ke4j5")
+debug_color = Color(0, 0.6428259, 0.31642112, 0.41960785)
+
+[node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("living")]
+offset_left = -9.0
+offset_top = 5.0
+offset_right = 9.0
+offset_bottom = 7.0
+theme_override_styles/background = ExtResource("3_ke4j5")
+theme_override_styles/fill = ExtResource("4_g0mlu")
+value = 50.0
+show_percentage = false
+script = ExtResource("5_i3mhf")
+living = NodePath("..")
+metadata/_custom_type_script = "uid://1uw1lojexpdh"

@@ -1,15 +1,19 @@
-class_name Living
-extends CharacterBody2D
+class_name Living extends CharacterBody2D
 
-@export var sprite: Sprite2D
+@export var sprite: AnimatedSprite2D
 @export var max_health := 100.0
 @onready var health = max_health
 
 var hit_effect_timer: Timer
+var hit_material = preload("res://scene/shaders/hit_shader.tres")
+
 
 signal health_changed
 
 func _ready() -> void:
+	add_to_group("Living")
+	sprite.material = hit_material
+	
 	hit_effect_timer = Timer.new()
 	hit_effect_timer.one_shot = true
 	hit_effect_timer.wait_time = 0.2
@@ -37,3 +41,9 @@ func heal(amount: float):
 func set_health(val: float):
 	health = clampf(val, 0, max_health)
 	health_changed.emit(health)
+
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+		
+	move_and_slide()

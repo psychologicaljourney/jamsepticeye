@@ -7,7 +7,7 @@ const BulletDamageUp = 50
 @onready var damage_over_time = preload("res://scene/weapons/bullets/damage_over_time.tscn")
 
 # func write_dialogue():
-	#OS.shell_open("notepad.exe")
+	#OS.shell_open("D:\SteamLibrary\steamapps\common\Library Of Ruina\LibraryOfRuina.exe")
 	#await get_tree().create_timer(0.5).timeout
 	#get_window().grab_focus() # maaan
 	#OS.alert("Then Write.")

@@ -1,5 +1,4 @@
-class_name BulletWeapon
-extends Weapon
+class_name BulletWeapon extends Weapon
 
 @export var bullet: PackedScene
 @export var firerate: float = 1

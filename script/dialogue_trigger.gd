@@ -1,6 +1,5 @@
 @icon("res://sprite/d_icon.svg")
-class_name DialogueTrigger
-extends Interactable
+class_name DialogueTrigger extends Interactable
 
 @export var dialogue: DialogueResource
 @export var title: String

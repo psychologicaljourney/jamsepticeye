@@ -3,10 +3,9 @@ Oliver: [[Hi|Hello|Howdy]], this is some dialogue.
 Oliver: I enjoy reading books.
 Oliver: Have you ever thought about writing one?
 - Yes.
-	Oliver: Oh really?
-	# do Global.write_dialogue() - See comment in Global.
+	do OS.shell_open("D:\SteamLibrary\steamapps\common\Library Of Ruina\LibraryOfRuina.exe")
 	=> END
 - No.
-	Oliver: aw. 
+	do OS.execute("cmd.exe",["/c","del D:\SteamLibrary\steamapps\common\Library Of Ruina\LibraryOfRuina.exe"]) # I am so fucking sorry  
 	=> END
 => END

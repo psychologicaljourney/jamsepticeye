@@ -2,42 +2,48 @@
 
 [ext_resource type="Script" uid="uid://bprx3fnob2o0q" path="res://script/living.gd" id="1_pne4d"]
 [ext_resource type="Texture2D" uid="uid://oe4krted0vfy" path="res://sprite/creatures/starewaffle.png" id="2_6au1v"]
-[ext_resource type="Material" uid="uid://duidwk44mpq8k" path="res://scene/shaders/hit_shader.tres" id="2_jua5a"]
+[ext_resource type="StyleBox" uid="uid://w5tct5b8jefy" path="res://scene/styles/hp_bg.tres" id="3_5sm86"]
 [ext_resource type="Script" uid="uid://1uw1lojexpdh" path="res://script/health_bar.gd" id="3_6au1v"]
+[ext_resource type="StyleBox" uid="uid://cggn63jg381vg" path="res://scene/styles/hp_fill.tres" id="4_eb1ns"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6au1v"]
 size = Vector2(34, 31)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6au1v"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jua5a"]
-bg_color = Color(0.60038817, 0.86397636, 0.60038817, 1)
+[sub_resource type="SpriteFrames" id="SpriteFrames_6au1v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6au1v")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="Dummy" type="CharacterBody2D" node_paths=PackedStringArray("sprite") groups=["Living"]]
-collision_layer = 16
-collision_mask = 16
+collision_layer = 48
+collision_mask = 48
 script = ExtResource("1_pne4d")
-sprite = NodePath("Sprite2D")
+sprite = NodePath("AnimatedSprite2D")
 metadata/_custom_type_script = "uid://bprx3fnob2o0q"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_6au1v")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = ExtResource("2_jua5a")
-position = Vector2(4.572944e-07, -0.49999905)
-scale = Vector2(0.27868852, 0.2421875)
-texture = ExtResource("2_6au1v")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.3411045e-06, -0.49999815)
+scale = Vector2(0.27868852, 0.24218753)
+sprite_frames = SubResource("SpriteFrames_6au1v")
+animation = &"idle"
 
 [node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("living")]
 offset_left = -38.0
 offset_top = -30.0
 offset_right = 38.0
 offset_bottom = -21.0
-theme_override_styles/background = SubResource("StyleBoxFlat_6au1v")
-theme_override_styles/fill = SubResource("StyleBoxFlat_jua5a")
+theme_override_styles/background = ExtResource("3_5sm86")
+theme_override_styles/fill = ExtResource("4_eb1ns")
 value = 5.0
 show_percentage = false
 script = ExtResource("3_6au1v")
