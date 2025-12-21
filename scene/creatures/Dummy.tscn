@@ -38,10 +38,10 @@ sprite_frames = SubResource("SpriteFrames_6au1v")
 animation = &"idle"
 
 [node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("living")]
-offset_left = -38.0
-offset_top = -30.0
-offset_right = 38.0
-offset_bottom = -21.0
+offset_left = -16.0
+offset_top = 18.0
+offset_right = 16.0
+offset_bottom = 21.0
 theme_override_styles/background = ExtResource("3_5sm86")
 theme_override_styles/fill = ExtResource("4_eb1ns")
 value = 5.0

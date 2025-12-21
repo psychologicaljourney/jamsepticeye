@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bkkbdimn5wf3o" path="res://sprite/tiles.png" id="1_e360p"]
 [ext_resource type="Texture2D" uid="uid://cneiwva31vlfh" path="res://sprite/labtiles-1.png" id="1_lrygk"]
 [ext_resource type="PackedScene" uid="uid://b0iljnup30cgt" path="res://scene/player.tscn" id="3_ijfxu"]
-[ext_resource type="Script" path="res://script/falling_flowers.gd" id="3_pnv2r"]
+[ext_resource type="Script" uid="uid://cb7chynblk57j" path="res://script/falling_flowers.gd" id="3_pnv2r"]
 [ext_resource type="Texture2D" uid="uid://cmrqed4ic2lk5" path="res://sprite/bg-1.png" id="4_e360p"]
 [ext_resource type="Texture2D" uid="uid://kifqp2kf4fqp" path="res://sprite/falling-flowers.png" id="4_xgocw"]
 [ext_resource type="Texture2D" uid="uid://b25fs4b5o71k0" path="res://sprite/lab_door.png" id="7_xgocw"]
