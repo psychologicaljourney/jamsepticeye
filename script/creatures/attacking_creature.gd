@@ -1,4 +1,4 @@
-class_name AttackingCreature extends Living
+class_name AttackingCreature extends WalkingCreature
 
 
 @export var attacking_area: Area2D
@@ -15,7 +15,7 @@ func _ready() -> void:
 	attacking_area.monitoring = false
 	attacking_area.body_entered.connect(body_entered)
 	range_area.body_entered.connect(body_in_range)
-	
+		
 func body_in_range(_body):
 	if !attacking:
 		attacking = true
