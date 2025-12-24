@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b0iljnup30cgt"]
+[gd_scene load_steps=33 format=3 uid="uid://b0iljnup30cgt"]
 
 [ext_resource type="Script" uid="uid://qgr3x4abaxok" path="res://script/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://dycls1jjjae5" path="res://sprite/player_1.png" id="2_ct4mp"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dbwftt4177nje" path="res://script/states/player/PlayerWalk.gd" id="7_hp4bs"]
 [ext_resource type="Script" uid="uid://ctyytvl1qd83e" path="res://script/states/player/PlayerJump.gd" id="8_g2vtq"]
 [ext_resource type="Script" uid="uid://da4c880bbwfey" path="res://script/interaction_area.gd" id="8_u7b46"]
+[ext_resource type="Script" uid="uid://dd5xvax2wfic1" path="res://script/debug_menu.gd" id="8_v4iqv"]
 [ext_resource type="Script" uid="uid://ddxrwugjppvyb" path="res://script/states/player/PlayerDash.gd" id="9_2fvbb"]
 [ext_resource type="PackedScene" uid="uid://d0mtxm1eydlc5" path="res://scene/shotgun.tscn" id="10_ml7e8"]
 [ext_resource type="Shader" uid="uid://b60umjprcoeo" path="res://script/cursor.gdshader" id="11_dk1vr"]
@@ -17,6 +18,7 @@
 [ext_resource type="Script" uid="uid://cfsbs2ya1hj41" path="res://script/states/player/PlayerTalk.gd" id="14_j4wxg"]
 [ext_resource type="Script" uid="uid://tcnm85tuq8qn" path="res://script/hand.gd" id="15_bup7g"]
 [ext_resource type="PackedScene" uid="uid://b073ux4n2i5y4" path="res://scene/weapons/rifle.tscn" id="16_bup7g"]
+[ext_resource type="Texture2D" uid="uid://b78dbfhkcka37" path="res://sprite/flashlight.png" id="19_42h83"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4jxa"]
 atlas = ExtResource("2_ct4mp")
@@ -188,6 +190,44 @@ offset_bottom = 20.0
 texture = ExtResource("11_ihjo1")
 expand_mode = 3
 
+[node name="Debug" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("spawn_list")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_v4iqv")
+spawn_list = NodePath("ItemList")
+
+[node name="ItemList" type="ItemList" parent="CanvasLayer/Debug"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -308.0
+offset_top = 18.0
+offset_right = -26.0
+offset_bottom = 102.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+item_count = 3
+item_0/text = "Blob"
+item_1/text = "Inf1"
+item_2/text = "Dummy"
+
+[node name="Label" type="Label" parent="CanvasLayer/Debug"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 16.0
+grow_horizontal = 2
+text = "Tab to close debug menu"
+
 [node name="InteractionArea" type="Area2D" parent="." groups=["Player_I"]]
 script = ExtResource("8_u7b46")
 
@@ -234,5 +274,12 @@ damage = 10.0
 [node name="Shotgun" parent="Hand" instance=ExtResource("10_ml7e8")]
 visible = false
 
+[node name="PointLight2D" type="PointLight2D" parent="Hand"]
+position = Vector2(-20, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("19_42h83")
+offset = Vector2(256, 0)
+
+[connection signal="item_clicked" from="CanvasLayer/Debug/ItemList" to="CanvasLayer/Debug" method="_on_item_list_item_clicked"]
 [connection signal="timeout" from="StateMachine/Dash/DashTimer" to="StateMachine/Dash" method="DashTimerOut"]
 [connection signal="timeout" from="StateMachine/Dash/DashCooldown" to="StateMachine/Walk" method="DashCooldownOut"]

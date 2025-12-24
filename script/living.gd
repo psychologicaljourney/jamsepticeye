@@ -40,4 +40,6 @@ func heal(amount: float):
 
 func set_health(val: float):
 	health = clampf(val, 0, max_health)
+	if health <= 0 and not self is Player:
+		queue_free()
 	health_changed.emit(health)

@@ -1,19 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3prrtfydysvl"]
+[gd_scene load_steps=22 format=3 uid="uid://c3prrtfydysvl"]
 
 [ext_resource type="Script" uid="uid://cseao7ndivum6" path="res://script/creatures/attacking_creature.gd" id="1_kxmxk"]
 [ext_resource type="Texture2D" uid="uid://drc03cp5v8law" path="res://sprite/creatures/inf_1_sheet.png" id="2_kxmxk"]
 [ext_resource type="StyleBox" uid="uid://w5tct5b8jefy" path="res://scene/styles/hp_bg.tres" id="3_h5a3n"]
 [ext_resource type="StyleBox" uid="uid://cggn63jg381vg" path="res://scene/styles/hp_fill.tres" id="4_8ei0t"]
 [ext_resource type="Script" uid="uid://1uw1lojexpdh" path="res://script/health_bar.gd" id="5_ktlg3"]
+[ext_resource type="Texture2D" uid="uid://426s0an2wcnt" path="res://sprite/light.png" id="6_kg4a8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ei0t"]
 size = Vector2(11, 14)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktlg3"]
-size = Vector2(13, 14)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_e6yfe"]
-radius = 19.026299
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kxmxk"]
 atlas = ExtResource("2_kxmxk")
@@ -58,10 +53,10 @@ region = Rect2(32, 26, 16, 26)
 [sub_resource type="SpriteFrames" id="SpriteFrames_h5a3n"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_kxmxk")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_h5a3n")
 }, {
 "duration": 2.0,
@@ -103,30 +98,62 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Inf1" type="CharacterBody2D" node_paths=PackedStringArray("attacking_area", "range_area", "sprite")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktlg3"]
+size = Vector2(13, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxmxk"]
+size = Vector2(532, 220)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e6yfe"]
+radius = 19.026299
+
+[node name="Inf1" type="CharacterBody2D" node_paths=PackedStringArray("attacking_area", "range_area", "tracking_area", "directional_node", "sprite")]
+z_index = 13
 collision_layer = 48
 collision_mask = 48
 script = ExtResource("1_kxmxk")
-attacking_area = NodePath("AttackArea")
+attacking_area = NodePath("Directional/AttackArea")
 range_area = NodePath("AttackRange")
 atk_damage = 30.0
 atk_time = 0.15
 windup = 0.2
-animation_windup = 0.4
-sprite = NodePath("AnimatedSprite2D")
+animation_windup = 0.3
+tracking_area = NodePath("Directional/TrackingArea")
+walkspeed = 50.0
+chasespeed = 75.0
+stop_offset = Vector2(5, 0)
+min_walk_time = 2.0
+max_walk_time = 5.0
+directional_node = NodePath("Directional")
+sprite = NodePath("Directional/AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -3)
 shape = SubResource("RectangleShape2D_8ei0t")
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="Directional" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Directional"]
+z_index = 1
+position = Vector2(0, -9)
+sprite_frames = SubResource("SpriteFrames_h5a3n")
+animation = &"attack"
+
+[node name="AttackArea" type="Area2D" parent="Directional"]
 position = Vector2(0, -9)
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Directional/AttackArea"]
 position = Vector2(4.5, 6)
 shape = SubResource("RectangleShape2D_ktlg3")
 debug_color = Color(0.99625236, 0.05831963, 9.62615e-07, 0.41960785)
+
+[node name="TrackingArea" type="Area2D" parent="Directional"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Directional/TrackingArea"]
+position = Vector2(263, -100)
+shape = SubResource("RectangleShape2D_kxmxk")
+debug_color = Color(1, 1, 1, 0.41960785)
 
 [node name="AttackRange" type="Area2D" parent="."]
 position = Vector2(0, -9)
@@ -150,9 +177,8 @@ script = ExtResource("5_ktlg3")
 living = NodePath("..")
 metadata/_custom_type_script = "uid://1uw1lojexpdh"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -9)
-sprite_frames = SubResource("SpriteFrames_h5a3n")
-animation = &"attack"
-frame = 5
-frame_progress = 1.0
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(0.2, 0.2)
+color = Color(0, 0, 1, 1)
+texture = ExtResource("6_kg4a8")

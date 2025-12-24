@@ -38,6 +38,8 @@ func _process(_delta: float) -> void:
 		await get_tree().create_timer(randi_range(1, 5)).timeout
 		target = pick_pos()
 		sprite.play("walk")
+	elif sprite.animation == "idle":
+		sprite.play("walk")
 
 func timeout():
 	sprite.play("idle")

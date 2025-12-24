@@ -21,9 +21,11 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_pressed("shoot"):
 		for i in get_children():
-			if i.visible:
+			if i.visible and i is Weapon:
 				i.shoot()
+				break
 	if Input.is_action_pressed("shoot_alt"):
 		for i in get_children():
-			if i.visible:
+			if i.visible and i is Weapon:
 				i.shoot_alt()
+				break
