@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://3c54uboa33ii"]
+[gd_scene load_steps=43 format=4 uid="uid://3c54uboa33ii"]
 
 [ext_resource type="Texture2D" uid="uid://bkkbdimn5wf3o" path="res://sprite/tiles.png" id="1_brvut"]
 [ext_resource type="Texture2D" uid="uid://deqkeucamnl1b" path="res://sprite/sign_1.png" id="2_p1hux"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://cmbcr8kt5n0xb" path="res://script/look_at_player_sprite.gd" id="9_tqoya"]
 [ext_resource type="PackedScene" uid="uid://mi6ogns4hwr4" path="res://scene/creatures/Dummy.tscn" id="10_tqoya"]
 [ext_resource type="PackedScene" uid="uid://cdq30itfxhiun" path="res://scene/creatures/Blob.tscn" id="11_k65ib"]
-[ext_resource type="PackedScene" uid="uid://c3prrtfydysvl" path="res://scene/creatures/Inf1.tscn" id="12_wscrc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p1hux"]
 texture = ExtResource("1_brvut")
@@ -386,10 +385,3 @@ position = Vector2(187, 612)
 
 [node name="Blob" parent="." instance=ExtResource("11_k65ib")]
 position = Vector2(322, 661)
-atk_damage = null
-animation_windup = null
-max_health = null
-
-[node name="Inf1" parent="." instance=ExtResource("12_wscrc")]
-position = Vector2(576, 668)
-max_health = null

@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://cdq30itfxhiun"]
+[gd_scene load_steps=18 format=3 uid="uid://cdq30itfxhiun"]
 
 [ext_resource type="Script" uid="uid://cseao7ndivum6" path="res://script/creatures/attacking_creature.gd" id="1_4gdsb"]
 [ext_resource type="Texture2D" uid="uid://dc6ylev2uvevu" path="res://sprite/creatures/inf_blob_sheet.png" id="2_x22ra"]
 [ext_resource type="StyleBox" uid="uid://w5tct5b8jefy" path="res://scene/styles/hp_bg.tres" id="3_ke4j5"]
 [ext_resource type="StyleBox" uid="uid://cggn63jg381vg" path="res://scene/styles/hp_fill.tres" id="4_g0mlu"]
 [ext_resource type="Script" uid="uid://1uw1lojexpdh" path="res://script/health_bar.gd" id="5_i3mhf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lsqv"]
+size = Vector2(12, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fbh4k"]
 atlas = ExtResource("2_x22ra")
@@ -73,50 +76,28 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lsqv"]
-size = Vector2(12, 9)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3p035"]
 size = Vector2(16, 9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ke4j5"]
 radius = 19.026299
 
-[node name="Blob" type="CharacterBody2D" node_paths=PackedStringArray("attacking_area", "range_area", "sprite")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_g0mlu"]
+radius = 120.50726
+
+[node name="Blob" type="CharacterBody2D" node_paths=PackedStringArray("attacking_area", "range_area", "directional_node", "tracking_area", "sprite")]
 collision_layer = 48
 collision_mask = 48
 script = ExtResource("1_4gdsb")
-attacking_area = NodePath("AttackArea")
-range_area = NodePath("AttackRange")
+attacking_area = NodePath("Directional/AttackArea")
+range_area = NodePath("Directional/AttackRange")
 atk_time = 0.25
 windup = 0.5
-sprite = NodePath("AnimatedSprite2D")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_5w61v")
-animation = &"attack"
-frame = 2
-frame_progress = 1.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -0.5)
-shape = SubResource("RectangleShape2D_4lsqv")
-
-[node name="AttackArea" type="Area2D" parent="."]
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(6, -0.5)
-shape = SubResource("RectangleShape2D_3p035")
-debug_color = Color(0.99625236, 0.05831963, 9.62615e-07, 0.41960785)
-
-[node name="AttackRange" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-shape = SubResource("CircleShape2D_ke4j5")
-debug_color = Color(0, 0.6428259, 0.31642112, 0.41960785)
+directional_node = NodePath("Directional")
+tracking_area = NodePath("Directional/TrackingArea")
+stop_offset = Vector2(7, 0)
+ignore_after_out_of_range = true
+sprite = NodePath("Directional/AnimatedSprite2D")
 
 [node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("living")]
 offset_left = -9.0
@@ -130,3 +111,38 @@ show_percentage = false
 script = ExtResource("5_i3mhf")
 living = NodePath("..")
 metadata/_custom_type_script = "uid://1uw1lojexpdh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -0.5)
+shape = SubResource("RectangleShape2D_4lsqv")
+
+[node name="Directional" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Directional"]
+sprite_frames = SubResource("SpriteFrames_5w61v")
+animation = &"walk"
+frame_progress = 0.87801516
+
+[node name="AttackArea" type="Area2D" parent="Directional"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Directional/AttackArea"]
+position = Vector2(6, -0.5)
+shape = SubResource("RectangleShape2D_3p035")
+debug_color = Color(0.99625236, 0.05831963, 9.62615e-07, 0.41960785)
+
+[node name="AttackRange" type="Area2D" parent="Directional"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Directional/AttackRange"]
+shape = SubResource("CircleShape2D_ke4j5")
+debug_color = Color(0, 0.6428259, 0.31642112, 0.41960785)
+
+[node name="TrackingArea" type="Area2D" parent="Directional"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Directional/TrackingArea"]
+shape = SubResource("CircleShape2D_g0mlu")
+debug_color = Color(1, 1, 1, 0.41960785)

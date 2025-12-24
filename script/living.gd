@@ -41,9 +41,3 @@ func heal(amount: float):
 func set_health(val: float):
 	health = clampf(val, 0, max_health)
 	health_changed.emit(health)
-
-func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-		
-	move_and_slide()

@@ -4,11 +4,15 @@ class_name AttackingCreature extends WalkingCreature
 @export var attacking_area: Area2D
 @export var range_area: Area2D
 @export var atk_damage: float = 10.0
-@export var atk_time: float = .5
-@export var windup: float = 1.0
-@export var animation_windup: float = .125
+@export var atk_time: float = .5 #time the attack collision is active
+@export var windup: float = 1.0 #windup before animation starts
+@export var animation_windup: float = .125 #windup of the animation itself
+@export var directional_node: Node2D #stuff that should be rotated (rotating the entire char2d node is a bad idea btw)
+	
 
 var attacking := false
+var looking_left := false
+
 
 func _ready() -> void:
 	super._ready()
@@ -33,13 +37,20 @@ func attack():
 			await get_tree().create_timer(animation_windup).timeout
 		attacking_area.monitoring = true
 		await get_tree().create_timer(atk_time).timeout
-		sprite.play("idle")
+		if walking:
+			sprite.play("walk")
+		else:
+			sprite.play("idle")
 		attacking_area.set_deferred("monitoring", false)
 		range_area.monitoring = true
 		attacking = false
 
-func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-		
-	move_and_slide()
+func _process(_delta: float) -> void:
+	super._process(_delta)
+	if target and directional_node:
+		if looking_left and get_target_direction() == 1:
+			looking_left = false
+			directional_node.scale.x = 1
+		elif !looking_left and get_target_direction() == -1:
+			looking_left = true
+			directional_node.scale.x = -1
