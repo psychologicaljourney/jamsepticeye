@@ -8,11 +8,7 @@ class_name AttackingCreature extends WalkingCreature
 @export var windup: float = 1.0 #windup before animation starts
 @export var animation_windup: float = .125 #windup of the animation itself
 
-	
-
 var attacking := false
-
-
 
 func _ready() -> void:
 	super._ready()

@@ -10,7 +10,7 @@ func _input(event: InputEvent) -> void:
 			hide()
 
 
-func _on_item_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
+func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
 	var path = "res://scene/creatures/"+spawn_list.get_item_text(index)+".tscn"
 	var n: PackedScene = load(path)
 	var c: Living = n.instantiate()

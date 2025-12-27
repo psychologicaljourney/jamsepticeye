@@ -1,0 +1,76 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://ckhrewk3a8btg"]
+
+[ext_resource type="Texture2D" uid="uid://cneiwva31vlfh" path="res://sprite/labtiles-1.png" id="1_6l1hh"]
+[ext_resource type="Texture2D" uid="uid://dfh0iei8fhdf2" path="res://sprite/tiles/tile_lights.png" id="2_53xrr"]
+[ext_resource type="Texture2D" uid="uid://bkkbdimn5wf3o" path="res://sprite/tiles.png" id="2_ff3id"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xgocw"]
+texture = ExtResource("1_6l1hh")
+texture_region_size = Vector2i(18, 18)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+10:0/0 = 0
+10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+11:0/0 = 0
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tg8f7"]
+texture = ExtResource("2_53xrr")
+texture_region_size = Vector2i(18, 18)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+7:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+11:0/0 = 0
+10:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e360p"]
+texture = ExtResource("2_ff3id")
+texture_region_size = Vector2i(18, 18)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, 4, 9, 4, 9, 9, -9, 9)
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+
+[resource]
+tile_size = Vector2i(18, 18)
+physics_layer_0/collision_layer = 33
+physics_layer_0/collision_mask = 33
+sources/2 = SubResource("TileSetAtlasSource_e360p")
+sources/0 = SubResource("TileSetAtlasSource_xgocw")
+sources/1 = SubResource("TileSetAtlasSource_tg8f7")

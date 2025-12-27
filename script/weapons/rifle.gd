@@ -11,6 +11,8 @@ extends Weapon
 func shoot():
 	if can_shoot:
 		can_shoot = false
+		fire_area.monitoring = true
+		await get_tree().create_timer(0.1).timeout
 		var bodies = fire_area.get_overlapping_bodies()
 		var limit = len(bodies) if len(bodies) <= target_limit else target_limit
 		for i in range(limit):
@@ -18,10 +20,12 @@ func shoot():
 				bodies[i].damage(damage)
 		await get_tree().create_timer(firerate).timeout
 		can_shoot = true
+		fire_area.set_deferred("monitoring", false)
 
 func shoot_alt():
 	if can_shoot_alt:
 		can_shoot_alt = false
+		fire_area.monitoring = true
 		$AnimationPlayer.play("shoot_alt")
 		Global.player.speed_mult = 0
 		await get_tree().create_timer(1).timeout
@@ -38,4 +42,5 @@ func shoot_alt():
 		Global.player.speed_mult = 1
 		await get_tree().create_timer(alt_firerate).timeout
 		can_shoot_alt = true
+		fire_area.set_deferred("monitoring", false)
 		

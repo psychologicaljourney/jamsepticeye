@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://c3prrtfydysvl"]
+[gd_scene load_steps=21 format=3 uid="uid://c3prrtfydysvl"]
 
 [ext_resource type="Script" uid="uid://cseao7ndivum6" path="res://script/creatures/attacking_creature.gd" id="1_kxmxk"]
 [ext_resource type="Texture2D" uid="uid://drc03cp5v8law" path="res://sprite/creatures/inf_1_sheet.png" id="2_kxmxk"]
 [ext_resource type="StyleBox" uid="uid://w5tct5b8jefy" path="res://scene/styles/hp_bg.tres" id="3_h5a3n"]
 [ext_resource type="StyleBox" uid="uid://cggn63jg381vg" path="res://scene/styles/hp_fill.tres" id="4_8ei0t"]
 [ext_resource type="Script" uid="uid://1uw1lojexpdh" path="res://script/health_bar.gd" id="5_ktlg3"]
-[ext_resource type="Texture2D" uid="uid://426s0an2wcnt" path="res://sprite/light.png" id="6_kg4a8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ei0t"]
 size = Vector2(11, 14)
@@ -176,9 +175,3 @@ show_percentage = false
 script = ExtResource("5_ktlg3")
 living = NodePath("..")
 metadata/_custom_type_script = "uid://1uw1lojexpdh"
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, -7)
-scale = Vector2(0.2, 0.2)
-color = Color(0, 0, 1, 1)
-texture = ExtResource("6_kg4a8")
