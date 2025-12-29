@@ -27,6 +27,15 @@ runtime/balloon_path="res://scene/dialogue/balloon.tscn"
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://data/": "pink",
+"res://scene/": "blue",
+"res://script/": "red",
+"res://sprite/": "green"
+}
+
 [global_group]
 
 Player=""

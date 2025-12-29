@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdq30itfxhiun"]
+[gd_scene load_steps=18 format=3 uid="uid://cdq30itfxhiun"]
 
 [ext_resource type="Script" uid="uid://cseao7ndivum6" path="res://script/creatures/attacking_creature.gd" id="1_4gdsb"]
 [ext_resource type="Texture2D" uid="uid://dc6ylev2uvevu" path="res://sprite/creatures/inf_blob_sheet.png" id="2_x22ra"]
 [ext_resource type="StyleBox" uid="uid://w5tct5b8jefy" path="res://scene/styles/hp_bg.tres" id="3_ke4j5"]
 [ext_resource type="StyleBox" uid="uid://cggn63jg381vg" path="res://scene/styles/hp_fill.tres" id="4_g0mlu"]
 [ext_resource type="Script" uid="uid://1uw1lojexpdh" path="res://script/health_bar.gd" id="5_i3mhf"]
-[ext_resource type="Texture2D" uid="uid://426s0an2wcnt" path="res://sprite/light.png" id="6_g0mlu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lsqv"]
 size = Vector2(12, 9)
@@ -147,9 +146,3 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Directional/TrackingArea"]
 shape = SubResource("CircleShape2D_g0mlu")
 debug_color = Color(1, 1, 1, 0.41960785)
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, -7)
-scale = Vector2(0.2, 0.2)
-color = Color(0, 0, 1, 1)
-texture = ExtResource("6_g0mlu")

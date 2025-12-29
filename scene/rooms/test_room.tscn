@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://daptl3yiq6lns"]
+[gd_scene load_steps=6 format=4 uid="uid://daptl3yiq6lns"]
 
 [ext_resource type="TileSet" uid="uid://ckhrewk3a8btg" path="res://scene/tiles/Lab.tres" id="1_0urtq"]
+[ext_resource type="PackedScene" uid="uid://dfatmt4fkmxlj" path="res://scene/creatures/Eye.tscn" id="3_p53ub"]
 [ext_resource type="PackedScene" uid="uid://b0iljnup30cgt" path="res://scene/player.tscn" id="5_eel6g"]
 
 [sub_resource type="Gradient" id="Gradient_4j5ol"]
@@ -38,3 +39,6 @@ texture = SubResource("GradientTexture2D_422ho")
 [node name="Player" parent="." instance=ExtResource("5_eel6g")]
 z_index = 12
 position = Vector2(202, 1336)
+
+[node name="Eye" parent="." instance=ExtResource("3_p53ub")]
+position = Vector2(189, 1269)
