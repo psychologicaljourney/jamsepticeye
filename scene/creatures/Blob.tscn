@@ -127,6 +127,7 @@ frame_progress = 0.87801516
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Directional/AttackArea"]
+visible = false
 position = Vector2(6, -0.5)
 shape = SubResource("RectangleShape2D_3p035")
 debug_color = Color(0.99625236, 0.05831963, 9.62615e-07, 0.41960785)
@@ -136,6 +137,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Directional/AttackRange"]
+visible = false
 shape = SubResource("CircleShape2D_ke4j5")
 debug_color = Color(0, 0.6428259, 0.31642112, 0.41960785)
 
@@ -144,5 +146,6 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Directional/TrackingArea"]
+visible = false
 shape = SubResource("CircleShape2D_g0mlu")
 debug_color = Color(1, 1, 1, 0.41960785)

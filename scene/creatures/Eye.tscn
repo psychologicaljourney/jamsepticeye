@@ -1,10 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://dfatmt4fkmxlj"]
+[gd_scene load_steps=25 format=3 uid="uid://dfatmt4fkmxlj"]
 
+[ext_resource type="Script" uid="uid://cntx58xh7bj20" path="res://script/creatures/eye.gd" id="1_p568d"]
 [ext_resource type="Texture2D" uid="uid://1cux5ko882jm" path="res://sprite/creatures/eye/eyelid.png" id="2_pfabu"]
 [ext_resource type="Texture2D" uid="uid://dkkj8ns6s7ebj" path="res://sprite/creatures/eye/wall_bg.png" id="3_ye5mk"]
 [ext_resource type="Texture2D" uid="uid://byxgi2infvhpv" path="res://sprite/creatures/eye/wall.png" id="4_jxo0p"]
 [ext_resource type="Texture2D" uid="uid://d2bx4254k05y0" path="res://sprite/creatures/eye/eyebg.png" id="5_bfr2h"]
+[ext_resource type="Script" uid="uid://dapm0lvccqphc" path="res://script/creatures/eye_thing/iris.gd" id="5_pfabu"]
+[ext_resource type="Shader" uid="uid://2s51i72sshhi" path="res://script/shaders/eye.gdshader" id="6_bfr2h"]
 [ext_resource type="Texture2D" uid="uid://cn7sfqko0nnev" path="res://sprite/creatures/eye/eye.png" id="6_jvjpp"]
+[ext_resource type="Texture2D" uid="uid://cc7ejxu7pc3fb" path="res://sprite/creatures/eye/eye_full.png" id="6_jxo0p"]
+[ext_resource type="Texture2D" uid="uid://cqs15kwci3qsp" path="res://sprite/creatures/eye/eye_lid_small.png" id="7_jvjpp"]
+[ext_resource type="Texture2D" uid="uid://c0podg7y04fu1" path="res://sprite/creatures/eye/eye_mask.png" id="8_jvjpp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p568d"]
 atlas = ExtResource("2_pfabu")
@@ -55,10 +61,10 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_snb7y")
 }, {
-"duration": 1.0,
+"duration": 40.0,
 "texture": SubResource("AtlasTexture_q2qwd")
 }],
-"loop": false,
+"loop": true,
 "name": &"blink",
 "speed": 8.0
 }, {
@@ -68,10 +74,16 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [],
-"loop": true,
+"loop": false,
 "name": &"open_eye",
 "speed": 5.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p568d"]
+shader = ExtResource("6_bfr2h")
+shader_parameter/offset = Vector2i(0, 0)
+shader_parameter/eyelid_texture = ExtResource("7_jvjpp")
+shader_parameter/mask_texture = ExtResource("8_jvjpp")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbfur"]
 atlas = ExtResource("6_jvjpp")
@@ -88,16 +100,16 @@ region = Rect2(9, 63, 7, 7)
 [sub_resource type="CircleShape2D" id="CircleShape2D_pfabu"]
 radius = 38.39596
 
-[node name="Eye" type="CharacterBody2D"]
+[node name="Eye" type="CharacterBody2D" node_paths=PackedStringArray("lid")]
 collision_layer = 48
 collision_mask = 48
+script = ExtResource("1_p568d")
+lid = NodePath("lid")
 
 [node name="lid" type="AnimatedSprite2D" parent="."]
 z_index = 5
 sprite_frames = SubResource("SpriteFrames_5w61v")
-animation = &"blink"
-frame = 6
-frame_progress = 1.0
+animation = &"open_eye"
 
 [node name="wallbg" type="Sprite2D" parent="."]
 z_index = -3
@@ -111,24 +123,36 @@ texture = ExtResource("4_jxo0p")
 z_index = 2
 texture = ExtResource("5_bfr2h")
 
-[node name="Iris" type="Node2D" parent="."]
+[node name="Iris" type="Node2D" parent="." node_paths=PackedStringArray("eye")]
+script = ExtResource("5_pfabu")
+eye = NodePath("eye")
+max_distance = 10.0
 
-[node name="1" type="Sprite2D" parent="Iris"]
+[node name="eye" type="Sprite2D" parent="Iris"]
+z_index = 2
+z_as_relative = false
+material = SubResource("ShaderMaterial_p568d")
+position = Vector2(-1, 1)
+texture = ExtResource("6_jxo0p")
+
+[node name="iris" type="Sprite2D" parent="Iris"]
+visible = false
 z_index = 2
 z_as_relative = false
 texture = SubResource("AtlasTexture_cbfur")
 
-[node name="2" type="Sprite2D" parent="Iris/1"]
+[node name="lens" type="Sprite2D" parent="Iris/iris"]
 z_index = 2
 z_as_relative = false
 texture = SubResource("AtlasTexture_hqigd")
 
-[node name="3" type="Sprite2D" parent="Iris/1/2"]
+[node name="pupil" type="Sprite2D" parent="Iris/iris/lens"]
 z_index = 2
 z_as_relative = false
 texture = SubResource("AtlasTexture_53xxv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 z_index = 2
 position = Vector2(-2, -0.5)
 shape = SubResource("CircleShape2D_pfabu")

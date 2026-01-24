@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dctgofr7xmre"]
+
+[ext_resource type="Shader" uid="uid://88gcpsig4u7s" path="res://script/shaders/hit_particle.gdshader" id="1_gul1t"]
+[ext_resource type="Texture2D" uid="uid://bix1qhsj1rf2v" path="res://scene/misc/default_hit_gradient.tres" id="1_ykj0d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5m5g"]
+shader = ExtResource("1_gul1t")
+shader_parameter/gradient = ExtResource("1_ykj0d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mmefg"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 2, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 2, 1)
+direction = Vector3(0, -10, 0)
+spread = 15.0
+initial_velocity_min = 77.78
+initial_velocity_max = 77.78
+gravity = Vector3(0, 125, 0)
+color_ramp = ExtResource("1_ykj0d")
+
+[node name="HitParticle" type="GPUParticles2D"]
+material = SubResource("ShaderMaterial_t5m5g")
+use_parent_material = true
+emitting = false
+amount = 10
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_mmefg")

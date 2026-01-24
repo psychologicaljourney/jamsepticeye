@@ -2,17 +2,19 @@ class_name Living extends CharacterBody2D
 
 @export var sprite: AnimatedSprite2D
 @export var max_health := 100.0
+@export var hit_particle_color: GradientTexture1D = preload("res://scene/misc/default_hit_gradient.tres")
 @onready var health = max_health
 
 var hit_effect_timer: Timer
 var hit_material = preload("res://scene/shaders/hit_shader.tres")
-
-
+var hit_particle_s = preload("res://scene/particles/hit_particle.tscn")
+var hit_particle: GPUParticles2D
 signal health_changed
 
 func _ready() -> void:
 	add_to_group("Living")
-	sprite.material = hit_material
+	if sprite != null:
+		sprite.material = hit_material
 	
 	hit_effect_timer = Timer.new()
 	hit_effect_timer.one_shot = true
@@ -25,13 +27,16 @@ func damage(amount: float):
 	hit_anim()
 
 func reset_hit_effect():
+	if sprite == null: return
 	sprite.set_instance_shader_parameter("hit", false)
 	sprite.set_instance_shader_parameter("hit_color", Color(1,1,1,1))
 	
 func set_hit_color(col: Color):
+	if sprite == null: return
 	sprite.set_instance_shader_parameter("hit_color", col)
 
 func hit_anim():
+	if sprite == null: return
 	sprite.set_instance_shader_parameter("hit", true)
 	hit_effect_timer.start()
 	
