@@ -6,7 +6,7 @@ var jump_vel = -200
 
 var speed_mult := 1.0
 
-var max_jumps := 2
+var max_jumps := 1
 @onready var jumps := max_jumps
 
 @export var state_machine: StateMachine
@@ -17,6 +17,14 @@ func _process(_delta: float) -> void:
 		sprite.flip_h = false
 	elif velocity.x < 0:
 		sprite.flip_h = true
+
+func _input(_event: InputEvent) -> void:
+	if state_machine.current_state != PlayerTalk:
+		if Input.is_action_pressed("down"):
+			set_collision_mask_value(7, false)
+			global_position.y += 1
+		elif Input.is_action_just_released("down"):
+			set_collision_mask_value(7, true)
 
 func sprite_look_at(pos: Vector2):
 	if global_position.x > pos.x:

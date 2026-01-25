@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://bphbbvjtpig2j"]
+
+[ext_resource type="Shader" uid="uid://2s51i72sshhi" path="res://script/shaders/eye.gdshader" id="1_4ix6h"]
+[ext_resource type="Script" uid="uid://b1tiwevctojm5" path="res://script/creatures/eyeling.gd" id="1_dxd7i"]
+[ext_resource type="Texture2D" uid="uid://ckv670oasp4vm" path="res://sprite/creatures/eye/eyeling_lid.png" id="2_dxd7i"]
+[ext_resource type="Texture2D" uid="uid://ceedrsld7cppt" path="res://sprite/creatures/eye/eyeling_mask.png" id="3_to1l3"]
+[ext_resource type="Texture2D" uid="uid://cyo84oi2revy1" path="res://sprite/creatures/eye/eyeling_eye.png" id="4_x1blc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxawp"]
+shader = ExtResource("1_4ix6h")
+shader_parameter/offset = Vector2i(0, 0)
+shader_parameter/eyelid_texture = ExtResource("2_dxd7i")
+shader_parameter/mask_texture = ExtResource("3_to1l3")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_to1l3"]
+radius = 6.0827627
+
+[node name="Eyeling" type="CharacterBody2D" node_paths=PackedStringArray("eye")]
+script = ExtResource("1_dxd7i")
+eye = NodePath("Sprite2D")
+max_distance = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_kxawp")
+texture = ExtResource("4_x1blc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_to1l3")

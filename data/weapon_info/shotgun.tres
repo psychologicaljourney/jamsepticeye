@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponInfo" load_steps=3 format=3 uid="uid://cdn18t2mcfy7l"]
+
+[ext_resource type="Script" uid="uid://bcrm6b53sqir0" path="res://script/weapons/WeaponInfo.gd" id="1_0adaf"]
+[ext_resource type="Texture2D" uid="uid://snqqag838n8j" path="res://sprite/weapons/ui/shotgun.png" id="1_568f5"]
+
+[resource]
+script = ExtResource("1_0adaf")
+weapon_name = "Shotgun"
+info_texture = ExtResource("1_568f5")
+metadata/_custom_type_script = "uid://bcrm6b53sqir0"

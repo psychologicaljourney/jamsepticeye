@@ -7,8 +7,6 @@ class_name Living extends CharacterBody2D
 
 var hit_effect_timer: Timer
 var hit_material = preload("res://scene/shaders/hit_shader.tres")
-var hit_particle_s = preload("res://scene/particles/hit_particle.tscn")
-var hit_particle: GPUParticles2D
 signal health_changed
 
 func _ready() -> void:
@@ -25,6 +23,7 @@ func _ready() -> void:
 func damage(amount: float):
 	set_health(health-amount)
 	hit_anim()
+	hit_particle()
 
 func reset_hit_effect():
 	if sprite == null: return
@@ -43,8 +42,18 @@ func hit_anim():
 func heal(amount: float):
 	set_health(health+amount)
 
+func hit_particle():
+	var h: GPUParticles2D = Global.hit_particle.instantiate()
+	h.global_position = global_position
+	h.process_material.color = hit_particle_color.gradient.sample(randf_range(0, 1))
+	get_tree().root.add_child(h)
+	h.emitting = true
+
 func set_health(val: float):
 	health = clampf(val, 0, max_health)
 	if health <= 0 and not self is Player:
-		queue_free()
+		die()
 	health_changed.emit(health)
+
+func die():
+	queue_free()

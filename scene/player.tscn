@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://b0iljnup30cgt"]
+[gd_scene load_steps=36 format=3 uid="uid://b0iljnup30cgt"]
 
 [ext_resource type="Script" uid="uid://qgr3x4abaxok" path="res://script/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://dycls1jjjae5" path="res://sprite/player_1.png" id="2_ct4mp"]
 [ext_resource type="Texture2D" uid="uid://bnxpsmf1knwd7" path="res://sprite/calendar.png" id="3_ct4mp"]
 [ext_resource type="FontFile" uid="uid://byo1i6133goq7" path="res://fonts/Daydream DEMO.otf" id="4_s4jxa"]
+[ext_resource type="Texture2D" uid="uid://snqqag838n8j" path="res://sprite/weapons/ui/shotgun.png" id="5_iuf2t"]
 [ext_resource type="Script" uid="uid://c4ssqhknlducy" path="res://script/StateMachine.gd" id="5_s4jxa"]
 [ext_resource type="Script" uid="uid://r4f2lpbco6vc" path="res://script/states/player/PlayerIdle.gd" id="6_oh5ij"]
 [ext_resource type="Script" uid="uid://dbwftt4177nje" path="res://script/states/player/PlayerWalk.gd" id="7_hp4bs"]
@@ -114,6 +115,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4jxa"]
 size = Vector2(9, 13)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42h83"]
+bg_color = Color(0, 0, 0, 0.078431375)
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.07815645, 0.078156464, 0.07815639, 1)
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_iuf2t"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dk1vr"]
 shader = ExtResource("11_dk1vr")
 
@@ -121,8 +135,8 @@ shader = ExtResource("11_dk1vr")
 radius = 12.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "camera", "sprite") groups=["Player"]]
-collision_layer = 5
-collision_mask = 5
+collision_layer = 69
+collision_mask = 69
 script = ExtResource("1_hjaqi")
 state_machine = NodePath("StateMachine")
 camera = NodePath("Camera2D")
@@ -152,6 +166,7 @@ offset_left = 5.0
 offset_right = 5.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="calendar" type="TextureRect" parent="CanvasLayer/UI"]
 layout_mode = 1
@@ -169,6 +184,48 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_s4jxa")
 theme_override_font_sizes/font_size = 15
 text = "01"
+
+[node name="WeaponInfo" type="Panel" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -177.0
+offset_right = 260.0
+offset_bottom = -13.0
+grow_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_42h83")
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/WeaponInfo"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -29.0
+offset_right = -15.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "SHOTGUN"
+label_settings = SubResource("LabelSettings_iuf2t")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/WeaponInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 11.0
+offset_right = -15.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_iuf2t")
 
 [node name="Cursor" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -264,21 +321,24 @@ wait_time = 0.1
 script = ExtResource("14_j4wxg")
 player = NodePath("../..")
 
-[node name="Hand" type="Node2D" parent="."]
+[node name="Hand" type="Node2D" parent="." node_paths=PackedStringArray("weapon_ui_label", "weapon_ui_texture", "weapon_info_panel")]
 position = Vector2(3, 3)
 script = ExtResource("15_bup7g")
-
-[node name="Rifle" parent="Hand" instance=ExtResource("16_bup7g")]
-damage = 10.0
-
-[node name="Shotgun" parent="Hand" instance=ExtResource("10_ml7e8")]
-visible = false
+weapon_ui_label = NodePath("../CanvasLayer/UI/WeaponInfo/Label")
+weapon_ui_texture = NodePath("../CanvasLayer/UI/WeaponInfo/TextureRect")
+weapon_info_panel = NodePath("../CanvasLayer/UI/WeaponInfo")
 
 [node name="PointLight2D" type="PointLight2D" parent="Hand"]
 position = Vector2(-20, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("19_42h83")
 offset = Vector2(256, 0)
+
+[node name="Shotgun" parent="Hand" instance=ExtResource("10_ml7e8")]
+
+[node name="Rifle" parent="Hand" instance=ExtResource("16_bup7g")]
+visible = false
+damage = 10.0
 
 [connection signal="item_clicked" from="CanvasLayer/Debug/ItemList" to="CanvasLayer/Debug" method="_on_item_list_item_clicked"]
 [connection signal="timeout" from="StateMachine/Dash/DashTimer" to="StateMachine/Dash" method="DashTimerOut"]

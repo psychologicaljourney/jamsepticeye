@@ -1,30 +1,36 @@
 [gd_scene load_steps=5 format=3 uid="uid://dctgofr7xmre"]
 
-[ext_resource type="Shader" uid="uid://88gcpsig4u7s" path="res://script/shaders/hit_particle.gdshader" id="1_gul1t"]
-[ext_resource type="Texture2D" uid="uid://bix1qhsj1rf2v" path="res://scene/misc/default_hit_gradient.tres" id="1_ykj0d"]
+[ext_resource type="Script" uid="uid://c7h35kwle336y" path="res://script/misc/kill_particle_after_finish.gd" id="3_t5m5g"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5m5g"]
-shader = ExtResource("1_gul1t")
-shader_parameter/gradient = ExtResource("1_ykj0d")
+[sub_resource type="Curve" id="Curve_ykj0d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.24576274, 0.20622563), 0.0, 0.0, 0, 0, Vector2(0.60169494, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gul1t"]
+curve = SubResource("Curve_ykj0d")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mmefg"]
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(1, 2, 1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 2, 1)
+angle_min = -208.0
+angle_max = 1.0728835e-05
 direction = Vector3(0, -10, 0)
-spread = 15.0
+spread = 60.0
 initial_velocity_min = 77.78
 initial_velocity_max = 77.78
 gravity = Vector3(0, 125, 0)
-color_ramp = ExtResource("1_ykj0d")
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_gul1t")
 
 [node name="HitParticle" type="GPUParticles2D"]
-material = SubResource("ShaderMaterial_t5m5g")
+z_index = 5
 use_parent_material = true
 emitting = false
 amount = 10
-lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_mmefg")
+script = ExtResource("3_t5m5g")

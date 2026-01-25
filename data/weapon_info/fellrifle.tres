@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponInfo" load_steps=3 format=3 uid="uid://dm73cie5gct2u"]
+
+[ext_resource type="Texture2D" uid="uid://lqde6glx434u" path="res://sprite/weapons/ui/fellrifle.png" id="1_1eyym"]
+[ext_resource type="Script" uid="uid://bcrm6b53sqir0" path="res://script/weapons/WeaponInfo.gd" id="1_37y78"]
+
+[resource]
+script = ExtResource("1_37y78")
+weapon_name = "Rifle"
+info_texture = ExtResource("1_1eyym")
+metadata/_custom_type_script = "uid://bcrm6b53sqir0"

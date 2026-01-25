@@ -12,3 +12,6 @@ func blink() -> void:
 		blinking = true
 		lid.play("blink")
 		lid.animation_finished.connect(func(): blinking = false)
+
+func die():
+	pass

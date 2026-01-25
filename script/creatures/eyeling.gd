@@ -1,7 +1,7 @@
-extends Node2D
+extends Living
+
 
 @export var eye: Sprite2D
-
 
 @export var speed: float = 5.0
 @export_range(0.0, 16.0, 0.5) var max_distance = 5.0
