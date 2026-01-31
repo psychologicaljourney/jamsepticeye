@@ -2,7 +2,7 @@ class_name Player extends Living
 
 
 var speed = 150
-var jump_vel = -200
+var jump_vel = -230
 
 var speed_mult := 1.0
 
